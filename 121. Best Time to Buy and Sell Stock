@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        vector<int> maxp;
+        int current_profit = 0;
+        int minp = INT_MAX;
+        for(auto price: prices)
+        {
+            if(minp > price)
+            {
+                minp = price;
+            }
+            current_profit = price - minp;
+            maxp.push_back(current_profit);
+        }
+        return *max_element(maxp.begin(), maxp.end());
+    }
+};
+
+Time complexity: O(N)
+Space complexity: O(N)
+
+
+2nd approach:
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int maxp;
+        int current_profit = 0;
+        int minp = INT_MAX;
+        for(auto price: prices)
+        {
+            if(minp > price)
+            {
+                minp = price;
+            }
+            current_profit = price - minp;
+            maxp = max(current_profit, maxp);
+        }
+        return maxp;
+    }
+};
+
+Time Complexity: O(N)
+Space Complexity: O(1)
